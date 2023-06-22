@@ -6,6 +6,7 @@ import { SearchBar } from './SearchBar/SearchBar';
 import { Basket } from './Basket/Basket';
 import { Burger } from './Burger/Burger';
 import { Auth } from './Auth/Auth';
+import authIcon from '../../assets/images/Auth.svg';
 import { auth } from '../../firebase';
 import { SignUp } from './Auth/SignUp/SignUp';
 import { Login } from './Auth/Login/Login';
@@ -87,12 +88,12 @@ export const Header = ({ isShow, setIsShow }) => {
               />
             ) : (
               <div className={styles.authContainer}>
-                <img className={styles.image} src={auth} alt="auth" />
+                <img className={styles.image} src={authIcon} alt="auth" />
                 <span
                   className={styles.text}
                   onClick={() => setFormActive(true)}
                 >
-                  Dsqnb
+                  Выйти
                 </span>
               </div>
             )}
