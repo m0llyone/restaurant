@@ -1,0 +1,14 @@
+/* inter-regular - latin */
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./Gilroy-Light.otf');
+}
+
+@font-face {
+  font-family: 'Zing';
+  font-style: italic;
+  font-weight: 400;
+  src: url('./ofont.ru_Zing\ Rust.ttf');
+}

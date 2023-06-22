@@ -1,0 +1,70 @@
+.button {
+  text-decoration: none;
+  background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+  border-radius: 10px;
+  padding: 7px 13px 7px 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  column-gap: 12px;
+  height: 38px;
+  margin-left: auto;
+}
+
+.text {
+  border-right:  1px solid rgba(255, 255, 255, 0.3);
+  font-family: 'Gilroy';
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  width: 76px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  font-family: 'Gilroy';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  color: #403C3B;
+  background-color: white;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.cart {
+  display: none;
+}
+
+
+@media screen and (max-width: 990px){
+  .text {
+  font-size: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: none;
+  height: 14px;
+  font-weight: 500;
+  width: auto;
+  text-transform: lowercase;
+  }
+
+  .counter {
+    display: none;
+  }
+
+  .button {
+    flex-direction: column;
+    padding: 8px;
+    margin-left: 0;
+  }
+
+  .cart{
+    display: block;
+  }
+}

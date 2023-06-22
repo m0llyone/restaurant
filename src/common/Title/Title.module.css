@@ -1,0 +1,11 @@
+.title {
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  color: #ffffff;
+  border-left: 4px solid #618967;
+  text-transform: uppercase;
+  padding-left: 20px;
+  margin-left: 90px;
+}

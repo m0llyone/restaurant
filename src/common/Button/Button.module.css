@@ -1,0 +1,10 @@
+.button {
+    background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 13px 19px;
+    border: none;
+    cursor: pointer;
+}

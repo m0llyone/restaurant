@@ -1,0 +1,56 @@
+.contactsContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 180px;
+  width: 100%;
+}
+
+.numberContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo{
+  background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-family: 'Gilroy';
+  font-size: 12px;
+  line-height: 20px;
+  color: #CFCFCF;
+}
+
+.number {
+  font-family: 'Gilroy';
+  font-size: 16px;
+  line-height: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width:1270px){
+  .logo{
+    display: none;
+  }
+  .numberContainer{
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:1185px){
+  .numberContainer{
+    display: none;
+  }
+}
+
+@media screen and (max-width:1032px){
+
+}

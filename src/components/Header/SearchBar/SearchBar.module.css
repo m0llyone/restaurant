@@ -1,0 +1,47 @@
+.searchBar {
+  background: #504B4A;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px 17px 18px;
+  gap: 15px;
+  max-height: 52px;
+  max-width: calc(555px - 38px);
+  width: 100%;
+}
+
+.input {
+  background: transparent;
+  overflow: hidden;
+  border: none;
+  font-family: 'Gilroy';
+  font-size: 18px;
+  color: #CFCFCF;
+  width: 100%;
+  width: 403px;
+}
+
+.input:focus {
+  outline: none;
+  border: none;
+}
+
+@media screen and (max-width:866px){
+  .searchBar{
+    order: 2;
+  }
+
+  .input{
+    width: 228px;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (max-width:363px) {
+  .input {
+    width: auto;
+  }
+}
