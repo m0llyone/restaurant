@@ -12,24 +12,26 @@ import { SignUp } from './Auth/SignUp/SignUp';
 import { Login } from './Auth/Login/Login';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { ACCOUNT_ROUTE } from '../../common/constans/Routes';
+import { Link } from 'react-router-dom';
 
 export const Header = ({ isShow, setIsShow }) => {
   const [isActive, setIsActive] = useState(true);
   const [formActive, setFormActive] = useState(false);
   const [isUser, setIsUser] = useState(false);
   const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsUser(false);
+        navigate(ACCOUNT_ROUTE);
       } else {
         setIsUser(true);
       }
     });
-  }, [formActive]);
-
-  // console.log(isUser);
+  }, []);
 
   const handleLogout = async () => {
     await signOut(auth)
@@ -38,7 +40,8 @@ export const Header = ({ isShow, setIsShow }) => {
         navigate('/');
       })
       .catch((err) => {
-        // const message = err.message;
+        const message = err.message;
+        setError(message);
       });
   };
 
@@ -79,7 +82,7 @@ export const Header = ({ isShow, setIsShow }) => {
           </div>
 
           <>
-            {!isUser ? (
+            {isUser ? (
               <Auth
                 setActive={setFormActive}
                 isUser={isUser}
@@ -87,15 +90,22 @@ export const Header = ({ isShow, setIsShow }) => {
                 formActive={formActive}
               />
             ) : (
-              <div className={styles.authContainer}>
-                <img className={styles.image} src={authIcon} alt="auth" />
-                <span
-                  className={styles.text}
-                  onClick={() => setFormActive(true)}
-                >
-                  Выйти
-                </span>
-              </div>
+              <>
+                <div className={styles.authContainer}>
+                  <Link to="/account">
+                    <img className={styles.image} src={authIcon} alt="auth" />
+                  </Link>
+                  <span
+                    className={styles.textExit}
+                    onClick={(e) => {
+                      handleLogout(e);
+                      setFormActive(true);
+                    }}
+                  >
+                    Выйти
+                  </span>
+                </div>
+              </>
             )}
           </>
           <div className={styles.basket}>

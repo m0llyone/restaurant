@@ -1,5 +1,4 @@
 import { Form } from '../Form/Form';
-import styles from './SignUp.module.css';
 import { useState } from 'react';
 import { auth } from '../../../../firebase';
 import {

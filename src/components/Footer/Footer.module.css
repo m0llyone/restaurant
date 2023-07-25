@@ -45,6 +45,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  border: none;
+  outline: none;
 }
 
 .footerLink {

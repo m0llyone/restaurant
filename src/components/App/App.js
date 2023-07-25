@@ -13,18 +13,21 @@ import { About } from '../Footer/FooterNav/About/About';
 import { Return } from '../Footer/FooterNav/Return/Return';
 import { Sales } from '../Footer/FooterNav/Sales/Sales';
 import { Trash } from '../Header/Basket/Trash/Trash';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Order } from '../Header/Basket/Trash/Order/Order';
 import { Account } from '../Header/Auth/Account/Account';
-import { ACCOUNT_ROUTE } from '../../common/Routes/Routes';
+import { ACCOUNT_ROUTE, constans } from '../../common/constans/Routes';
 import { Preloader } from '../../common/Preloader/Preloader';
+import { Product } from '../Navigation/Product/Product';
+
+export const AppContext = createContext();
 
 function App() {
   const { state } = useLocation();
   const [prediction, setPrediction] = useState({});
   const [isShow, setIsShow] = useState(false);
   const [isPreloader, setIsPreloader] = useState(false);
-
+  const [counter, setCounter] = useState(0);
   useEffect(() => {
     setIsPreloader(true);
 
@@ -52,25 +55,28 @@ function App() {
         <Preloader />
       ) : (
         <>
-          <Header isShow={isShow} setIsShow={setIsShow} />
-          {!state && <Banner />}
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Course />} />
-            <Route path="/:url" element={<Course />} />
-            <Route path="/cart" element={<Trash />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/delivery" element={<Delivery />} />
-            <Route path="/return-product" element={<Return />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path={ACCOUNT_ROUTE} element={<Account />} />
-          </Routes>
-          <Footer
-            prediction={prediction}
-            isShow={isShow}
-            setIsShow={setIsShow}
-          />
+          <AppContext.Provider value={{ counter, setCounter }}>
+            <Header isShow={isShow} setIsShow={setIsShow} />
+            {!state && <Banner />}
+            <Navigation />
+            <Routes>
+              <Route path={constans.routes.home} element={<Course />} />
+              <Route path={constans.routes.url} element={<Course />} />
+              <Route path={constans.routes.cart} element={<Trash />} />
+              <Route path={constans.routes.order} element={<Order />} />
+              <Route path={constans.routes.about} element={<About />} />
+              <Route path={constans.routes.delivery} element={<Delivery />} />
+              <Route path={constans.routes.return} element={<Return />} />
+              <Route path={constans.routes.sales} element={<Sales />} />
+              <Route path={ACCOUNT_ROUTE} element={<Account />} />
+              <Route path={constans.routes.productCart} element={<Product />} />
+            </Routes>
+            <Footer
+              prediction={prediction}
+              isShow={isShow}
+              setIsShow={setIsShow}
+            />
+          </AppContext.Provider>
         </>
       )}
     </div>

@@ -1,10 +1,13 @@
 import styles from './Counter.module.css';
 import cart from '../../../../assets/images/cart.svg';
 import Minus from '../../../../assets/images/Minus.svg';
+import bag from '../../../../assets/images/bag.svg';
 import Plus from '../../../../assets/images/Plus.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { decrease, increase } from '../../../../reducer/productreducer';
-
+import { AppContext } from '../../../App/App';
+import { Button } from '../../../../common/Button/Button';
+import { useLocation, useParams } from 'react-router-dom';
 export const Counter = ({
   dispatch,
   category,
@@ -12,10 +15,15 @@ export const Counter = ({
   cartCount,
   price,
   cartPrice,
+  addStyles,
 }) => {
-  const [isShow, setIsShow] = useState(cartCount > 1);
+  const [isShow, setIsShow] = useState(!!cartCount);
+  const { counter, setCounter } = useContext(AppContext);
+  const { id: urlId } = useParams();
+  const { pathname } = useLocation();
 
   const handleAddCount = ({ currentTarget }) => {
+    setCounter(counter + 1);
     const product = { category: category, id: currentTarget.id };
     dispatch(increase(product));
   };
@@ -23,40 +31,54 @@ export const Counter = ({
   const handleSubCount = ({ currentTarget }) => {
     if (cartCount === 1) {
       setIsShow(!isShow);
-    } else {
-      const product = { category: category, id: currentTarget.id };
-      dispatch(decrease(product));
     }
+    setCounter(counter - 1);
+    const product = { category: category, id: currentTarget.id };
+    dispatch(decrease(product));
   };
 
-  const handleShowCount = () => {
+  const handleShowCount = ({ currentTarget }) => {
     setIsShow(!isShow);
+    const product = { category: category, id: currentTarget.id };
+    dispatch(increase(product));
+    setCounter(counter + 1);
   };
 
   return (
     <>
       {isShow ? (
         <>
-          <span className={styles.cartCounter}> {cartCount}</span>
+          <span className={styles.cartCounter}>
+            {pathname !== '/cart' ? `${cartCount}` : ' '}
+          </span>
           <div className={styles.container}>
-            <button onClick={handleSubCount} id={id} className={styles.button}>
-              <img src={Minus} alt={'Minus'} />
-            </button>
-
-            <span className={styles.productPrice}>{cartPrice} ₽</span>
-
-            <button onClick={handleAddCount} id={id} className={styles.button}>
-              <img src={Plus} alt={'Plus'} />
-            </button>
+            <Button
+              addStyles={`${styles.button} ${addStyles}`}
+              handleClick={handleSubCount}
+              id={id}
+              image={Minus}
+            />
+            <span className={styles.productPrice}>
+              {pathname === '/cart' ? `${cartCount}` : `${cartPrice} ₽`}
+            </span>
+            <Button
+              addStyles={`${styles.button} ${addStyles}`}
+              handleClick={handleAddCount}
+              id={id}
+              image={Plus}
+            />
           </div>
         </>
       ) : (
         <div className={styles.container}>
           <span className={styles.productPrice}>{price} ₽</span>
-          <button onClick={handleShowCount} className={styles.buttonContainer}>
-            <span className={styles.text}>В корзину</span>
-            <img src={cart} />
-          </button>
+          <Button
+            addStyles={urlId ? styles.buttonProduct : styles.buttonContainer}
+            handleClick={handleShowCount}
+            id={id}
+            image={urlId ? bag : cart}
+            title={urlId ? 'Корзина ' : 'В корзину'}
+          />
         </div>
       )}
     </>

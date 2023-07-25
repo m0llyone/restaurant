@@ -6,6 +6,8 @@ import { Counter } from './Counter/Counter';
 import productReducer from '../../../reducer/productreducer';
 import { Title } from '../../../common/Title/Title';
 import { useDispatch, useSelector } from 'react-redux';
+import { constans } from '../../../common/constans/Routes';
+import { Link } from 'react-router-dom';
 
 export const Course = () => {
   const state = useSelector((state) => state.product);
@@ -26,7 +28,9 @@ export const Course = () => {
       <div className={styles.productConteiner}>
         {products.map((item) => (
           <div className={styles.product} key={item.id}>
-            <img src={item.image.src} alt={item.image.alt}></img>
+            <Link to={`/${link}/${item.id}`} state={true}>
+              <img src={item.image.src} alt={item.image.alt} />
+            </Link>
             <div className={styles.titleContainer}>
               <h3 className={styles.productTitle}>{item.title}</h3>
               <span className={styles.productWeight}>Вес {item.weight}</span>

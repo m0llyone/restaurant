@@ -63,8 +63,6 @@ export const Order = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // validateState(state);
     if (state.agree) {
       console.log(state);
     }
@@ -594,7 +592,6 @@ export const Order = () => {
           </div>
         </OrderComponent>
         <OrderComponent>
-          {/* <OrderComponent addStyles={styles.orderPadding}> */}
           <div className={styles.confirmContainer}>
             <div style={{ display: 'flex' }}>
               <div className={styles.agreeCheckContainer}>
@@ -619,6 +616,7 @@ export const Order = () => {
               type="submit"
               disabled={isDisabled}
               onClick={(e) => {
+                e.preventDefault();
                 handleSubmit(e);
                 handleChange(e);
               }}

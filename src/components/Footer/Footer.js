@@ -4,8 +4,9 @@ import styles from '../Footer/Footer.module.css';
 import Arrow from '../../assets/images/Arrow-up.svg';
 import { Link } from 'react-router-dom';
 import { Weather } from './Weather/Weather';
+import { memo } from 'react';
 
-export const Footer = ({ prediction, isShow, setIsShow }) => {
+export const Footer = memo(function Footer({ prediction, isShow, setIsShow }) {
   return (
     <footer className={styles.container}>
       <div className={styles.wrapper}>
@@ -32,4 +33,4 @@ export const Footer = ({ prediction, isShow, setIsShow }) => {
       </div>
     </footer>
   );
-};
+});

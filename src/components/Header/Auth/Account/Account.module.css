@@ -1,0 +1,21 @@
+.container {
+  background-color: #403C3B;
+  height: 100vh;
+  padding: 35px 172px 90px;
+  position: relative;
+}
+
+.button {
+  background: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+  border-radius: 10px;
+  font-family: 'Gilroy';
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+  padding: 17px 50px;
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  top: 20%;
+  left: 40%;
+}
